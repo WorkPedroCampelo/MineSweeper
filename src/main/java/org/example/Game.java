@@ -3,8 +3,11 @@ package org.example;
 import jdk.swing.interop.SwingInterOpUtils;
 
 public class Game {
-
+/*
+    TODO add a multiplier that is connected to dificulty so u can get different ways of play without violating DRY
+ */
     String difficulty;
+
 
     public Game(String difficulty) {
         this.difficulty = difficulty;
@@ -32,5 +35,10 @@ public class Game {
         }
 
     }
-    private String[] names = {"javi","Juan","Pepe","Paco","Luis","Jose","Maria","An"};
+
+
+
+
+
+
 }
