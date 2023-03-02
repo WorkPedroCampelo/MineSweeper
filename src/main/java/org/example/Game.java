@@ -1,27 +1,39 @@
 package org.example;
 
-import jdk.swing.interop.SwingInterOpUtils;
+import java.util.Scanner;
 
 public class Game {
 /*
-    TODO add a multiplier that is connected to dificulty so u can get different ways of play without violating DRY
+    TODO add a multiplier that is connected to difficulty so u can get different ways of play without violating DRY
  */
     String difficulty;
+    static Scanner teclado=new Scanner(System.in);
 
     public Game(String difficulty) {
         this.difficulty = difficulty;
     }
+    static boolean pannelCreated=false;
+    Panel easyPannel=new Panel();
+
+    public void menu() {
+
+        //easyPannel.createUserPanel();
+        //easyPannel.showUserPannel();
 
 
 
-    public static void menu() {
 
-        //showUserPannel
-        int optionMenu = 0;
-        //show mineField//UserPanel
-        System.out.println("1. Open a cell");
+        if (!pannelCreated){
+            easyPannel.createBackPanel();
+            pannelCreated=true;
+        }
+        System.out.println(easyPannel.showBackPanel());
+
+
+        System.out.println("\n1. Open a cell");
         System.out.println("2. Mark a cell");
         System.out.println("3. Exit");
+        int optionMenu = teclado.nextInt();
         switch (optionMenu) {
             case 1->{
                     System.out.println("Opening a cell");
