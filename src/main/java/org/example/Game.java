@@ -8,11 +8,10 @@ public class Game {
  */
     String difficulty;
 
-
     public Game(String difficulty) {
-
         this.difficulty = difficulty;
     }
+
 
 
     public static void menu() {
