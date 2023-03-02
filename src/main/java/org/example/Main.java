@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         Scanner teclado = new Scanner(System.in);
         System.out.println("-_-_-_-_MENU_-_-_-_-");
         System.out.println("1. PLAY EASY MODE");

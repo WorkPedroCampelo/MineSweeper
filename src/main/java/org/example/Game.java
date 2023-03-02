@@ -10,10 +10,14 @@ public class Game {
 
 
     public Game(String difficulty) {
+
         this.difficulty = difficulty;
     }
 
+
     public static void menu() {
+
+        //showUserPannel
         int optionMenu = 0;
         //show mineField//UserPanel
         System.out.println("1. Open a cell");
