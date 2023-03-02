@@ -16,40 +16,46 @@ public class Game {
     Panel easyPannel=new Panel();
 
     public void menu() {
+        while (easyPannel.isAlive()){
 
-        //easyPannel.createUserPanel();
-        //easyPannel.showUserPannel();
-
-
-
-
-        if (!pannelCreated){
-            easyPannel.createBackPanel();
-            pannelCreated=true;
-        }
-        System.out.println(easyPannel.showBackPanel());
+            if (!pannelCreated){
+                easyPannel.createBackPanel();
+                pannelCreated=true;
+            }
+            System.out.println(easyPannel.showBackPanel());
 
 
-        System.out.println("\n1. Open a cell");
-        System.out.println("2. Mark a cell");
-        System.out.println("3. Exit");
-        int optionMenu = teclado.nextInt();
-        switch (optionMenu) {
-            case 1->{
+            System.out.println("\n1. Open a cell");
+            System.out.println("2. Mark a cell");
+            System.out.println("3. Remove a flag");
+            System.out.println("4. Exit");
+            int optionMenu = teclado.nextInt();
+            switch (optionMenu) {
+                case 1->{
                     System.out.println("Opening a cell");
-                //openCell();
-            }
-            case 2->{
-                    System.out.println("Marking a cell");
-                //markCell();
+                    easyPannel.openCell();
                 }
-            default -> {
-                System.out.println("Not a valid value");
+                case 2->{
+                    System.out.println("Marking a cell");
+                    //markCell();
+                }
+                case 3->{
+                    System.out.println("Removing flag");
+                }
+                case 4->{
+                    easyPannel.setAlive(false);
+                }
+                default -> {
+                    System.out.println("Not a valid value");
+                }
+
             }
 
         }
-
     }
+
+
+
 
 
 

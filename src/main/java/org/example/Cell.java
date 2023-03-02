@@ -2,18 +2,17 @@ package org.example;
 
 public class Cell {
 
-    public Cell(boolean withMine, int state, int column, int row, char symbol) {
+    public Cell(boolean withMine, char state, int column, int row) {
         this.withMine = withMine;
         this.state = state;
         this.column = column;
         this.row = row;
-        this.symbol = symbol;
     }
 
 
-    char symbol;//X:covered, O:uncovered, P:marked
+
     boolean withMine;
-    int state;//1:covered, 2:uncovered, 3:marked
+    char state;//X:covered, C:clear, P:marked
     int column;
     int row;
 
@@ -21,13 +20,14 @@ public class Cell {
         this.withMine = withMine;
     }
 
+    public void setState(char state) {
+        this.state = state;
+    }
+
     public boolean isWithMine() {
         return withMine;
     }
 
-    public char getSymbol() {
-        return symbol;
-    }
     public int getState() {
         return state;
     }
