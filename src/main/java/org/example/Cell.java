@@ -12,7 +12,7 @@ public class Cell {
 
 
     boolean withMine;
-    char state;//X:covered, C:clear, P:marked
+    char state;//X:covered, C:clear, P:marked, M:MineShowed
     int column;
     int row;
 

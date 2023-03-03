@@ -7,18 +7,23 @@ public class Main {
 
         Scanner teclado = new Scanner(System.in);
         System.out.println("-_-_-_-_MENU_-_-_-_-");
-        System.out.println("1. PLAY EASY MODE");
-        System.out.println("2. EXIT");
+        System.out.println("1. PLAY NORMAL MODE");
+        System.out.println("2. SELECT NUMBER OF ROWS AND COLUMNS");
         int option = 1;//teclado.nextInt();
 
         switch (option) {
             case 1:
-                Game easy = new Game("easy");
+                Game match = new Game("normal");
                 System.out.println("Here we go! :) ");
-                easy.menu();
+                System.out.println();
+                match.menu();
                 break;
 
             case 2:
+                System.out.println("Changing rows and columns");
+                break;
+
+            case 3:
                 System.out.println("Byee! :)");
                 break;
 

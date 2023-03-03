@@ -57,13 +57,12 @@ public class Panel {
     }
 
 
-    public void setMinesOnCells() {
-        for (int i = 0; i < 5; i++) {
+    public void setMinesOnCells() {//TODO Set number of mines chosen by user
+        for (int i = 0; i <= 5; i++) {
             backPanel[random.nextInt(5)][random.nextInt(5)].setWithMine(true);
         }
-        int casa = random.nextInt(4);
-
     }
+
 
     public void openCell(){
 
@@ -95,6 +94,20 @@ public class Panel {
         backPanel[xCordsTakenByUser][yCordsTakenByUser].setState('P');
     }
 
+    public int verifyCellsWithoutMinesLeft(){
+        int cellsWithoutMinesLeft=0;
+        for (int i = 0; i < backPanel.length ; i++) {
+            for (int j = 0; j < backPanel[i].length ; j++) {
+                if (backPanel[i][j].isWithMine()){
+                    cellsWithoutMinesLeft++;
+
+                }
+
+            }
+
+        }
+        return cellsWithoutMinesLeft;
+    }
 
 
 
