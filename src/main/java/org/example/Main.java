@@ -10,7 +10,7 @@ public class Main {
         System.out.println("-_-_-_-_MENU_-_-_-_-");
         System.out.println("1. PLAY NORMAL MODE");
         System.out.println("2. SELECT NUMBER OF ROWS AND COLUMNS");
-        int option = teclado.nextInt();
+        int option = 1;//teclado.nextInt();
 
         switch (option) {
             case 1:

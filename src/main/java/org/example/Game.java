@@ -20,6 +20,7 @@ public class Game {
 
             if (!panelCreated){
                 gamePanel.setRowsAndColumns();
+                gamePanel.setNumberOfMines();
                 gamePanel.createBackPanel();
                 panelCreated =true;
             }

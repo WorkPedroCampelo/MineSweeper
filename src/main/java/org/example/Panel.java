@@ -8,6 +8,7 @@ public class Panel {
 
 
     static Scanner teclado=new Scanner(System.in);
+    static int minesSetByUser=0;
     Cell backPanel[][];
     static Random random= new Random();
 
@@ -35,9 +36,9 @@ public class Panel {
 
 
     public void createBackPanel(){
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < backPanel.length; i++) {
 
-            for (int j = 0; j < 5; j++) {
+            for (int j = 0; j < backPanel[i].length; j++) {
                backPanel[i][j]=(new Cell(false,'X', i, j));
             }
         }
@@ -46,11 +47,11 @@ public class Panel {
     }
     public String showBackPanel() {
         String panel="";
-        int k=0;
-        for (int i = 0; i < 5; i++) {
+
+        for (int i = 0; i < backPanel.length; i++) {
 
             panel=panel + "\n" + i + "\t";
-            for (int j = 0; j < 5; j++) {
+            for (int j = 0; j < backPanel[i].length; j++) {
 
                 panel=panel +" "+((char) backPanel[i][j].getState()) + "\t";
 
@@ -59,18 +60,41 @@ public class Panel {
 
         }
         panel+="\n\n";
-        while(k<5) {
-            panel=panel+"\t " + k;
-            k++;
-        };
+        int k=0;
+
+        if (backPanel.length< backPanel[k].length) {
+            do {
+                panel=panel+"\t " + k;
+                k++;
+            }while(k < backPanel[0].length);
+
+        }else {
+            do {
+                panel = panel + "\t " + k;
+                k++;
+            } while (k < backPanel[k - 1].length);
+        }
+
         return panel;
     }
 
 
-    public void setMinesOnCells() {//TODO Set number of mines chosen by user
-        for (int i = 0; i <= 5; i++) {
-            backPanel[random.nextInt(5)][random.nextInt(5)].setWithMine(true);
+    public void setMinesOnCells() {
+        int countMinesSet=0;
+        for (int i = 0; countMinesSet < minesSetByUser ; i++) {
+
+            countMinesSet++;
+            if (i+1== backPanel[i].length) {
+                i=0;
+
+            }
+            backPanel[random.nextInt(backPanel.length)][random.nextInt(backPanel[i].length)].setWithMine(true); // TODO crear un bucle en el que compruebe si hay ya una mina en esa celda, si es el caso poner otro numero aleatorio hast aque encuentre una casilla sin mina.  TAMBIEN tener en cuenta, que esto generará un bucle infinito en caso de que se pongan más minas de las posibles para la matriz, es decir, hay que limitar el numero de minas a rowsSetByUser * columnsSetByUser
         }
+    }
+
+    public void setNumberOfMines(){
+        System.out.println("Please input the number of mines u want to set on the field");
+        minesSetByUser=teclado.nextInt();
     }
 
 
