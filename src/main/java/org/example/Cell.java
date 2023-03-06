@@ -11,10 +11,10 @@ public class Cell {
 
 
 
-    boolean withMine;
-    char state;//X:covered, C:clear, P:marked, M:MineShowed
-    int column;
-    int row;
+    private boolean withMine;
+    private char state;//'X':covered, ' ':clear, 'P':marked, 'M':MineShowed
+    private int column;
+    private int row;
 
     public void setWithMine(boolean withMine) {
         this.withMine = withMine;

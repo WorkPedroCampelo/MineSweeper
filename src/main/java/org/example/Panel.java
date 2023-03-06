@@ -8,7 +8,7 @@ public class Panel {
 
 
     static Scanner teclado=new Scanner(System.in);
-    Cell backPanel[][]=new Cell[5][5];
+    Cell backPanel[][];
     static Random random= new Random();
 
     public Panel() {
@@ -19,10 +19,20 @@ public class Panel {
     public boolean isAlive() {
         return alive;
     }
+    public void setRowsAndColumns(){
+        System.out.println("Please input the number of rows");
+        int rowsSelectedByUser= teclado.nextInt();
+        System.out.println("Please input the number of columns");
+        int columnsSelectedByUser= teclado.nextInt();
+        backPanel=new Cell[rowsSelectedByUser][columnsSelectedByUser];
+
+    }
 
     public  void setAlive(boolean alive) {
         Panel.alive = alive;
     }
+
+
 
     public void createBackPanel(){
         for (int i = 0; i < 5; i++) {
@@ -74,7 +84,7 @@ public class Panel {
 
         if (!backPanel[xCordsTakenByUser][yCordsTakenByUser].isWithMine()){
             System.out.println("Nice one soldier, you cleared the area, keep it like that");
-            backPanel[xCordsTakenByUser][yCordsTakenByUser].setState('C');
+            backPanel[xCordsTakenByUser][yCordsTakenByUser].setState(' ');
 
 
         }else {
@@ -109,6 +119,23 @@ public class Panel {
         return cellsWithoutMinesLeft;
     }
 
+    public void showAllMines(){
+        for (int i = 0; i < backPanel.length; i++) {
+            for (int j = 0; j < backPanel[i].length; j++) {
+                if (backPanel[i][j].isWithMine()) {
+                    backPanel[i][j].setState('M');
+                }
+            }
+
+        }
+    }
+
+    /*public void checkCloseCells(){ //TODO
+        if (backPanel) {
+
+        }
+    }
+*/
 
 
 

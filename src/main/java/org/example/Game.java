@@ -13,16 +13,17 @@ public class Game {
         this.difficulty = difficulty;
     }
     static boolean panelCreated =false;
-    Panel easyPanel =new Panel();
+    public Panel gamePanel =new Panel();
 
     public void menu() {
-        while (easyPanel.isAlive()){
+        while (gamePanel.isAlive()){
 
             if (!panelCreated){
-                easyPanel.createBackPanel();
+                gamePanel.setRowsAndColumns();
+                gamePanel.createBackPanel();
                 panelCreated =true;
             }
-            System.out.println(easyPanel.showBackPanel());
+            System.out.println(gamePanel.showBackPanel());
 
 
             System.out.println("\n1. Open a cell");
@@ -30,26 +31,31 @@ public class Game {
             System.out.println("3. Remove a flag");
             System.out.println("4. See how many mines are left");
             System.out.println("5. Exit");
+            System.out.println("DEBUG OPTIONS 6:Show all mines");
             int optionMenu = teclado.nextInt();
             switch (optionMenu) {
                 case 1->{
                     System.out.println("Opening a cell");
-                    easyPanel.openCell();
+                    gamePanel.openCell();
                 }
                 case 2->{
                     System.out.println("Marking a cell");
-                    //markCell();
+
                 }
                 case 3->{
                     System.out.println("Removing flag");
                 }
                 case 4->{
-                    System.out.println("The minefield has " + easyPanel.verifyCellsWithoutMinesLeft() + " mines right now")  ;
+                    System.out.println("The minefield has " + gamePanel.verifyCellsWithoutMinesLeft() + " mines right now")  ;
 
                 }
                 case 5->{
                     System.out.println("GOOOOOOOOOOD NIGHT VIETNAM!! ");
-                    easyPanel.setAlive(false);
+                    gamePanel.setAlive(false);
+                }
+                case 6->{
+                    System.out.println("GOOOOOOOOOOD NIGHT VIETNAM!! ");
+                    gamePanel.showAllMines();
                 }
                 default -> {
                     System.out.println("Not a valid value");
