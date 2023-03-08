@@ -32,7 +32,7 @@ public class Game {
             System.out.println("3. Remove a flag");
             System.out.println("4. See how many mines are left");
             System.out.println("5. Exit");
-            System.out.println("DEBUG OPTIONS 6:Show all mines");
+            System.out.println("DEBUG OPTIONS 6:Show all mines, 7:Open all except the ones with mines");
             int optionMenu = teclado.nextInt();
             switch (optionMenu) {
                 case 1->{
@@ -57,6 +57,10 @@ public class Game {
                 case 6->{
                     System.out.println("GOOOOOOOOOOD NIGHT VIETNAM!! ");
                     gamePanel.showAllMines();
+                }
+                case 7->{
+                    System.out.println("GOsh VIETNAM?? ");
+                    gamePanel.openAllCellsExceptMinedOnes();
                 }
                 default -> {
                     System.out.println("Not a valid value");

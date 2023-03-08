@@ -161,6 +161,17 @@ public class Panel {
         }
     }
 
+    public void openAllCellsExceptMinedOnes(){
+        for (int i = 0; i < backPanel.length; i++) {
+            for (int j = 0; j < backPanel[i].length; j++) {
+                if (!backPanel[i][j].isWithMine()) {
+                    backPanel[i][j].setState(' ');
+                }
+            }
+
+        }
+    }
+
     /*public void checkCloseCells(){ //TODO
         if (backPanel) {
 
