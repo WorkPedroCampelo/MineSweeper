@@ -81,14 +81,21 @@ public class Panel {
 
     public void setMinesOnCells() {
         int countMinesSet=0;
-        for (int i = 0; countMinesSet < minesSetByUser ; i++) {
 
+        for (int i = 0; countMinesSet < minesSetByUser ; i++) {
+            int r1=random.nextInt(backPanel.length) ;
+            int r2=random.nextInt(backPanel[i].length) ;
             countMinesSet++;
             if (i+1== backPanel[i].length) {
                 i=0;
 
             }
-            backPanel[random.nextInt(backPanel.length)][random.nextInt(backPanel[i].length)].setWithMine(true); // TODO crear un bucle en el que compruebe si hay ya una mina en esa celda, si es el caso poner otro numero aleatorio hast aque encuentre una casilla sin mina.  TAMBIEN tener en cuenta, que esto generará un bucle infinito en caso de que se pongan más minas de las posibles para la matriz, es decir, hay que limitar el numero de minas a rowsSetByUser * columnsSetByUser
+            while ( backPanel[r1][r2].isWithMine()) {
+                r1=random.nextInt(backPanel.length) ;
+                r2=random.nextInt(backPanel[i].length) ;
+            }
+
+            backPanel[r1][r2].setWithMine(true); // TODO crear un bucle en el que compruebe si hay ya una mina en esa celda, si es el caso poner otro numero aleatorio hast aque encuentre una casilla sin mina.  TAMBIEN tener en cuenta, que esto generará un bucle infinito en caso de que se pongan más minas de las posibles para la matriz, es decir, hay que limitar el numero de minas a rowsSetByUser * columnsSetByUser
         }
     }
 
