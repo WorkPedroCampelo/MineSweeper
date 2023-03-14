@@ -77,32 +77,35 @@ public class Panel {
 
         return panel;
     }
-
-
-    public void setMinesOnCells() {
-        int countMinesSet=0;
-
-        for (int i = 0; countMinesSet < minesSetByUser ; i++) {
-            int r1=random.nextInt(backPanel.length) ;
-            int r2=random.nextInt(backPanel[i].length) ;
-            countMinesSet++;
-            if (i+1== backPanel[i].length) {
-                i=0;
-
-            }
-            while ( backPanel[r1][r2].isWithMine()) {
-                r1=random.nextInt(backPanel.length) ;
-                r2=random.nextInt(backPanel[i].length) ;
-            }
-
-            backPanel[r1][r2].setWithMine(true); // TODO crear un bucle en el que compruebe si hay ya una mina en esa celda, si es el caso poner otro numero aleatorio hast aque encuentre una casilla sin mina.  TAMBIEN tener en cuenta, que esto generará un bucle infinito en caso de que se pongan más minas de las posibles para la matriz, es decir, hay que limitar el numero de minas a rowsSetByUser * columnsSetByUser
-        }
-    }
-
     public void setNumberOfMines(){
         System.out.println("Please input the number of mines u want to set on the field");
         minesSetByUser=teclado.nextInt();
+        if (minesSetByUser> backPanel.length*backPanel[0].length){
+            System.out.println("Number of mines is higher than the number of cells");
+            setNumberOfMines();
+        }
     }
+
+
+    public void setMinesOnCells() {
+
+
+        for (int countMinesSet = 0; countMinesSet < minesSetByUser ; countMinesSet++) {
+            int r1=random.nextInt(backPanel.length) ;
+            int r2=random.nextInt(backPanel[r1].length) ;
+
+
+
+            while ( backPanel[r1][r2].isWithMine()) {
+                r1=random.nextInt(backPanel.length) ;
+                r2=random.nextInt(backPanel[r1].length) ;
+            }
+
+            backPanel[r1][r2].setWithMine(true);
+        }
+    }
+
+
 
 
     public void openCell(){
@@ -134,6 +137,8 @@ public class Panel {
         System.out.println("Area marked with a flag! ");
         backPanel[xCordsTakenByUser][yCordsTakenByUser].setState('P');
     }
+
+    //TODO unmark a cell
 
     public int verifyCellsWithoutMinesLeft(){
         int cellsWithoutMinesLeft=0;
@@ -171,6 +176,23 @@ public class Panel {
 
         }
     }
+
+   /* public boolean winChecker(){      //TODO
+        boolean unMined=false;
+        for (int i = 0; i < backPanel.length; i++) {
+            for (int j = 0; j < backPanel[i].length; j++) {
+                if (!backPanel[i][j].isWithMine()) {
+                    //unMined=true;
+
+                }
+            }
+
+
+        }
+
+        System.out.println("YOU WON!, CONGRATS");
+        return unMined;
+    }*/
 
     /*public void checkCloseCells(){ //TODO
         if (backPanel) {

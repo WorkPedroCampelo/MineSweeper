@@ -14,16 +14,16 @@ public class Game {
     }
     static boolean panelCreated =false;
     public Panel gamePanel =new Panel();
+    public void panelCreator(){
+        gamePanel.setRowsAndColumns();
+        gamePanel.setNumberOfMines();
+        gamePanel.createBackPanel();
+        panelCreated =true;
+    }
 
     public void menu() {
-        while (gamePanel.isAlive()){
+        while (gamePanel.isAlive() /*&& gamePanel.winChecker()*/){
 
-            if (!panelCreated){
-                gamePanel.setRowsAndColumns();
-                gamePanel.setNumberOfMines();
-                gamePanel.createBackPanel();
-                panelCreated =true;
-            }
             System.out.println(gamePanel.showBackPanel());
 
 
@@ -41,10 +41,11 @@ public class Game {
                 }
                 case 2->{
                     System.out.println("Marking a cell");
-
+                    gamePanel.markCell();
                 }
                 case 3->{
                     System.out.println("Removing flag");
+
                 }
                 case 4->{
                     System.out.println("The minefield has " + gamePanel.verifyCellsWithoutMinesLeft() + " mines right now")  ;

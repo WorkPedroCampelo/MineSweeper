@@ -18,11 +18,12 @@ public class Main {
                 Game match = new Game("normal");
                 System.out.println("Here we go! :) ");
                 System.out.println();
+                match.panelCreator();
                 match.menu();
                 break;
 
             case 2:
-                System.out.println("Changing rows and columns");
+                System.out.println("Hey");
                 break;
 
             case 3:

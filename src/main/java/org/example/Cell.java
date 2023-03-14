@@ -28,7 +28,7 @@ public class Cell {
         return withMine;
     }
 
-    public int getState() {
+    public char getState() {
         return state;
     }
 
