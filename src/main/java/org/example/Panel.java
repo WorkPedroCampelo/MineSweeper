@@ -7,15 +7,17 @@ import java.util.Scanner;
 public class Panel {
 
 
-    static Scanner teclado=new Scanner(System.in);
-    static int minesSetByUser=0;
-    Cell backPanel[][];
-    static Random random= new Random();
+    private Scanner teclado;
+    private int minesSetByUser=0;
+    private Cell backPanel[][];
+    private Random random;
+    static boolean alive=true;
 
     public Panel() {
+        random= new Random();
+        teclado=new Scanner(System.in);
     }
 
-    static boolean alive=true;
 
     public boolean isAlive() {
         return alive;
