@@ -130,6 +130,17 @@ public class Panel {
 
     }
 
+   private void openCloseCells(){
+        for (int i = 0; i < backPanel.length; i++) {
+            for (int j = 0; j < backPanel[i].length; j++) {
+                if (backPanel[i][j].getState()=='X'){
+                    backPanel[i][j].setState(' ');
+                }
+            }
+        }
+    }
+
+
     public void markCell(){
         System.out.println("Which cell u wanna mark?");
         System.out.print("x cords: ");
@@ -142,6 +153,10 @@ public class Panel {
 
     //TODO unmark a cell
 
+   /* public void touchingCloseMines(int xCordsTakenByUser, int yCordsTakenByUser ){
+        backPanel[xCordsTakenByUser+1][yCordsTakenByUser]
+    }
+*/
     public int verifyCellsWithoutMinesLeft(){
         int cellsWithoutMinesLeft=0;
         for (int i = 0; i < backPanel.length ; i++) {

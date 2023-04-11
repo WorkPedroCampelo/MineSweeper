@@ -9,8 +9,5 @@
         <module name="MineSweeper" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="MineSweeper" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>
