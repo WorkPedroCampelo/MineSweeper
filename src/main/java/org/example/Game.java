@@ -22,13 +22,13 @@ public class Game {
     }
 
     public void menu() {
-        while (gamePanel.isAlive() /*&& gamePanel.winChecker()*/){
+        while (gamePanel.isAlive() && !gamePanel.winChecker()){
 
             System.out.println(gamePanel.showBackPanel());
 
 
             System.out.println("\n1. Open a cell");
-            System.out.println("2. Mark a cell");
+            System.out.println("2. Set a flag");
             System.out.println("3. Remove a flag");
             System.out.println("4. See how many mines are left");
             System.out.println("5. Exit");
@@ -44,8 +44,7 @@ public class Game {
                     gamePanel.markCell();
                 }
                 case 3->{
-                    System.out.println("Removing flag");
-
+                    gamePanel.unMarkCell();
                 }
                 case 4->{
                     System.out.println("The minefield has " + gamePanel.verifyCellsWithoutMinesLeft() + " mines right now")  ;
@@ -60,7 +59,7 @@ public class Game {
                     gamePanel.showAllMines();
                 }
                 case 7->{
-                    System.out.println("GOsh VIETNAM?? ");
+                    System.out.println("Unexpected but okay :) ");
                     gamePanel.openAllCellsExceptMinedOnes();
                 }
                 default -> {

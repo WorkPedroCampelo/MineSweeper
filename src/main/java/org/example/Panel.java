@@ -39,7 +39,6 @@ public class Panel {
 
     public void createBackPanel(){
         for (int i = 0; i < backPanel.length; i++) {
-
             for (int j = 0; j < backPanel[i].length; j++) {
                backPanel[i][j]=(new Cell(false,'X', i, j));
             }
@@ -51,15 +50,11 @@ public class Panel {
         String panel="";
 
         for (int i = 0; i < backPanel.length; i++) {
-
             panel=panel + "\n" + i + "\t";
             for (int j = 0; j < backPanel[i].length; j++) {
 
                 panel=panel +" "+((char) backPanel[i][j].getState()) + "\t";
-
-
             }
-
         }
         panel+="\n\n";
         int k=0;
@@ -79,6 +74,9 @@ public class Panel {
 
         return panel;
     }
+
+
+
     public void setNumberOfMines(){
         System.out.println("Please input the number of mines u want to set on the field");
         minesSetByUser=teclado.nextInt();
@@ -86,8 +84,11 @@ public class Panel {
             System.out.println("Number of mines is higher than the number of cells");
             setNumberOfMines();
         }
-    }
 
+    }
+    public int getMinesSetByUser() {
+        return minesSetByUser;
+    }
 
     public void setMinesOnCells() {
 
@@ -112,6 +113,7 @@ public class Panel {
 
     public void openCell(){
 
+
         System.out.println("Which cell u wanna open?");
         System.out.print("x cords: ");
         int xCordsTakenByUser= teclado.nextInt();
@@ -120,8 +122,8 @@ public class Panel {
 
         if (!backPanel[xCordsTakenByUser][yCordsTakenByUser].isWithMine()){
             System.out.println("Nice one soldier, you cleared the area, keep it like that");
-            backPanel[xCordsTakenByUser][yCordsTakenByUser].setState(' ');
-
+            backPanel[xCordsTakenByUser][yCordsTakenByUser].setState((char)touchingMines(xCordsTakenByUser,yCordsTakenByUser)); //TODO ESTO HAY Q VERLO, WTF HE EHECHO AQUI
+           // backPanel[xCordsTakenByUser][yCordsTakenByUser].setState(' '); Antes era así.
 
         }else {
             System.out.println("BIG EXPLOSION*\n\nOh no! \nSoldier down!!");
@@ -130,15 +132,29 @@ public class Panel {
 
     }
 
-   private void openCloseCells(){
-        for (int i = 0; i < backPanel.length; i++) {
-            for (int j = 0; j < backPanel[i].length; j++) {
-                if (backPanel[i][j].getState()=='X'){
-                    backPanel[i][j].setState(' ');
-                }
-            }
+    public int touchingMines(int xCords, int yCords){
+        int counterTouchingMines=0;
+        if (backPanel[xCords-1][yCords-1].isWithMine()) {
+            counterTouchingMines++;
+        } else if (backPanel[xCords][yCords-1].isWithMine()) {
+            counterTouchingMines++;
+        }else if (backPanel[xCords+1][yCords-1].isWithMine()) {
+            counterTouchingMines++;
+        }else if (backPanel[xCords-1][yCords].isWithMine()) {
+            counterTouchingMines++;
+        }else if (backPanel[xCords+1][yCords].isWithMine()) {
+            counterTouchingMines++;
+        }else if (backPanel[xCords-1][yCords+1].isWithMine()) {
+            counterTouchingMines++;
+        }else if (backPanel[xCords][yCords+1].isWithMine()) {
+            counterTouchingMines++;
+        }else if (backPanel[xCords+1][yCords+1].isWithMine()) {
+            counterTouchingMines++;
         }
+        return counterTouchingMines;
     }
+
+
 
 
     public void markCell(){
@@ -151,12 +167,21 @@ public class Panel {
         backPanel[xCordsTakenByUser][yCordsTakenByUser].setState('P');
     }
 
-    //TODO unmark a cell
-
-   /* public void touchingCloseMines(int xCordsTakenByUser, int yCordsTakenByUser ){
-        backPanel[xCordsTakenByUser+1][yCordsTakenByUser]
+    public void unMarkCell(){
+        System.out.println("Which cell u wanna unmark?");
+        System.out.print("x cords: ");
+        int xCordsTakenByUser= teclado.nextInt();
+        System.out.print("y cords: ");
+        int yCordsTakenByUser= teclado.nextInt();
+        if (backPanel[xCordsTakenByUser][yCordsTakenByUser].getState()=='P') {
+            backPanel[xCordsTakenByUser][yCordsTakenByUser].setState('X');
+        }else {
+            System.out.println("There are no flags on this cell soldier");
+        }
     }
-*/
+
+
+
     public int verifyCellsWithoutMinesLeft(){
         int cellsWithoutMinesLeft=0;
         for (int i = 0; i < backPanel.length ; i++) {
@@ -165,9 +190,7 @@ public class Panel {
                     cellsWithoutMinesLeft++;
 
                 }
-
             }
-
         }
         return cellsWithoutMinesLeft;
     }
@@ -194,22 +217,25 @@ public class Panel {
         }
     }
 
-   /* public boolean winChecker(){      //TODO
-        boolean unMined=false;
+    public boolean winChecker(){
+        boolean winner=false;
+        int counter=0;
         for (int i = 0; i < backPanel.length; i++) {
-            for (int j = 0; j < backPanel[i].length; j++) {
-                if (!backPanel[i][j].isWithMine()) {
-                    //unMined=true;
-
+            for (int j = 0; j <backPanel[i].length ; j++) {
+                if (backPanel[i][j].getState()==' '){
+                    counter++;
                 }
             }
-
-
+        }
+        if (backPanel.length * backPanel[0].length- getMinesSetByUser() == counter){
+            winner=true;
         }
 
-        System.out.println("YOU WON!, CONGRATS");
-        return unMined;
-    }*/
+        if (winner==true){
+            System.out.println("YOU WON!, CONGRATS");
+        }
+        return winner;
+    }
 
     /*public void checkCloseCells(){ //TODO
         if (backPanel) {
