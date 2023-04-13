@@ -122,7 +122,8 @@ public class Panel {
 
         if (!backPanel[xCordsTakenByUser][yCordsTakenByUser].isWithMine()){
             System.out.println("Nice one soldier, you cleared the area, keep it like that");
-            backPanel[xCordsTakenByUser][yCordsTakenByUser].setState((char)touchingMines(xCordsTakenByUser,yCordsTakenByUser)); //TODO ESTO HAY Q VERLO, WTF HE EHECHO AQUI
+
+            backPanel[xCordsTakenByUser][yCordsTakenByUser].setState((String.valueOf(touchingMines(xCordsTakenByUser, yCordsTakenByUser)).charAt(0)));
            // backPanel[xCordsTakenByUser][yCordsTakenByUser].setState(' '); Antes era así.
 
         }else {
@@ -132,7 +133,12 @@ public class Panel {
 
     }
 
-    public int touchingMines(int xCords, int yCords){
+    public Cell[][] touchingCells(int xCords, int yCords){
+        
+    }
+
+
+    public Integer touchingMines(int xCords, int yCords){
         int counterTouchingMines=0;
         if (backPanel[xCords-1][yCords-1].isWithMine()) {
             counterTouchingMines++;
