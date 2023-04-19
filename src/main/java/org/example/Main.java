@@ -14,6 +14,7 @@ public class Main {
 
         switch (option) {
             case 1:
+                //gamePanel.setRowsAndColumns(); Esto se podría hacer? (solo por curiosidad)
                 Game match = new Game("normal");
                 System.out.println("Here we go! :) ");
                 System.out.println();
