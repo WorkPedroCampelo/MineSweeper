@@ -128,13 +128,9 @@ public class Panel {
         int xCordsTakenByUser = cellToOpen.getRow();
         int yCordsTakenByUser = cellToOpen.getColumn();
 
-        getTouchingCells(cellToOpen);
 
 
         if (!cellToOpen.isWithMine()) {
-            showBackPanel();//NORAR ESTO DESPUESSSSS
-            System.out.println("Nice one soldier, you cleared the area, keep it like that");
-
             String temp= String.valueOf(touchingMines(cellToOpen)); //Usado para convertir el int en char
             cellToOpen.setState( temp.charAt(0));
 
@@ -142,13 +138,15 @@ public class Panel {
                 cellToOpen.setState(' ');
                 if (touchingMines(cellToOpen)==0){
                     for (int i = 0; i < getTouchingCells(cellToOpen).size() ; i++) {
-
-                        openCell(getTouchingCells(cellToOpen).get(i));
+                        if (cellToOpen.getState()=='X'){
+                            openCell(getTouchingCells(cellToOpen).get(i));
+                        }
                     }
                 }
             }
 
-        } else {
+            System.out.println("Nice one soldier, you cleared the area, keep it like that");
+        }  else {
             System.out.println("BIG EXPLOSION*\n\nOh no! \nSoldier down!!");
             alive = false;
             showAllMines();
