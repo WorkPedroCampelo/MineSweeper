@@ -2,14 +2,17 @@ package org.example;
 
 public class Cell {
 
-    public Cell(boolean withMine, char state, int column, int row) {
+    public Cell(boolean withMine, char state, int row, int column) {
         this.withMine = withMine;
         this.state = state;
         this.column = column;
         this.row = row;
     }
 
-
+    public Cell(int row, int column) {
+        this.column = column;
+        this.row = row;
+    }
 
     private boolean withMine;
     private char state;//'X':covered, ' ':clear, 'P':marked, 'M':MineShowed
