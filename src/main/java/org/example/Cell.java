@@ -2,7 +2,7 @@ package org.example;
 
 public class Cell {
 
-    public Cell(boolean withMine, char state, int column, int row) {
+    public Cell(boolean withMine, char state, int row, int column) {
         this.withMine = withMine;
         this.state = state;
         this.column = column;
