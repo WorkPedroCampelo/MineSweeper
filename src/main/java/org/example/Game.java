@@ -21,6 +21,7 @@ public class Game {
         panelCreated =true;
     }
 
+
     public void menu() {
         while (gamePanel.isAlive() && !gamePanel.winChecker()){
 
@@ -37,7 +38,8 @@ public class Game {
             switch (optionMenu) {
                 case 1->{
                     System.out.println("Opening a cell");
-                    gamePanel.openCell();
+                    Cell cellToOpen = new Cell(gamePanel.askXCords(), gamePanel.askYCords());
+                    gamePanel.openCell(cellToOpen);
                 }
                 case 2->{
                     System.out.println("Marking a cell");

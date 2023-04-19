@@ -9,7 +9,10 @@ public class Cell {
         this.row = row;
     }
 
-
+    public Cell(int row, int column) {
+        this.column = column;
+        this.row = row;
+    }
 
     private boolean withMine;
     private char state;//'X':covered, ' ':clear, 'P':marked, 'M':MineShowed

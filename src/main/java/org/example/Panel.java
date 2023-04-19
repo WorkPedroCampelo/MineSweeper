@@ -90,6 +90,16 @@ public class Panel {
         }
 
     }
+    public int askXCords(){
+        System.out.print("x cords: ");
+        int xCordsTakenByUser = teclado.nextInt();
+        return xCordsTakenByUser;
+    }
+    public int askYCords(){
+        System.out.print("y cords: ");
+        int yCordsTakenByUser = teclado.nextInt();
+        return yCordsTakenByUser;
+    }
 
     public int getMinesSetByUser() {
         return minesSetByUser;
@@ -113,32 +123,45 @@ public class Panel {
     }
 
 
-    public void openCell() {
-
-
+    public void openCell(Cell cellToOpen) {
         System.out.println("Which cell u wanna open?");
-        System.out.print("x cords: ");
-        int xCordsTakenByUser = teclado.nextInt();
-        System.out.print("y cords: ");
-        int yCordsTakenByUser = teclado.nextInt();
+        int xCordsTakenByUser = cellToOpen.getRow();
+        int yCordsTakenByUser = cellToOpen.getColumn();
 
-        getTouchingCells(backPanel[xCordsTakenByUser][yCordsTakenByUser]);
-        System.out.println(touchingMines(backPanel[xCordsTakenByUser][yCordsTakenByUser]));
+        getTouchingCells(cellToOpen);
 
-        if (!backPanel[xCordsTakenByUser][yCordsTakenByUser].isWithMine()) {
+
+        if (!cellToOpen.isWithMine()) {
+            showBackPanel();//NORAR ESTO DESPUESSSSS
             System.out.println("Nice one soldier, you cleared the area, keep it like that");
 
-            String temp= String.valueOf(touchingMines(backPanel[xCordsTakenByUser][yCordsTakenByUser])); //Usado para convertir el int en char
-            backPanel[xCordsTakenByUser][yCordsTakenByUser].setState( temp.charAt(0));
+            String temp= String.valueOf(touchingMines(cellToOpen)); //Usado para convertir el int en char
+            cellToOpen.setState( temp.charAt(0));
 
+            if (cellToOpen.getState()!=' '){
+                cellToOpen.setState(' ');
+                if (touchingMines(cellToOpen)==0){
+                    for (int i = 0; i < getTouchingCells(cellToOpen).size() ; i++) {
+
+                        openCell(getTouchingCells(cellToOpen).get(i));
+                    }
+                }
+            }
 
         } else {
             System.out.println("BIG EXPLOSION*\n\nOh no! \nSoldier down!!");
             alive = false;
+            showAllMines();
+            System.out.println(showBackPanel());
         }
 
 
+
+
+
     }
+
+
 
     private ArrayList<Cell> getTouchingCells(Cell mainCell) {
         ArrayList touchingCells = new ArrayList<>();
@@ -169,6 +192,8 @@ public class Panel {
         }
         return counterTouchingMines;
     }
+
+
 
 
     public void markCell() {
