@@ -149,14 +149,14 @@ public class Panel {
             showAllMines();
             System.out.println(showBackPanel());
         }else{
-            String temp= String.valueOf(touchingMines(cellToOpen)); //Usado para convertir el int en char
+            String temp= String.valueOf(touchingMines(backPanel[xCordsTakenByUser][yCordsTakenByUser])); //Usado para convertir el int en char
             backPanel[xCordsTakenByUser][yCordsTakenByUser].setState( temp.charAt(0));
 
             if (touchingMines(backPanel[xCordsTakenByUser][yCordsTakenByUser]) == 0) {
 
                 for (int i = 0; i < getTouchingCells(backPanel[xCordsTakenByUser][yCordsTakenByUser]).size(); i++) {
 
-                    if (backPanel[xCordsTakenByUser][yCordsTakenByUser].getState() == ' ') {
+                    if (backPanel[xCordsTakenByUser][yCordsTakenByUser].getState() == '0') {
                         openCell(getTouchingCells(backPanel[xCordsTakenByUser][yCordsTakenByUser]).get(i));
                     }
                 }
