@@ -124,35 +124,55 @@ public class Panel {
 
 
     public void openCell(Cell cellToOpen) {
-        System.out.println("Which cell u wanna open?");
         int xCordsTakenByUser = cellToOpen.getRow();
         int yCordsTakenByUser = cellToOpen.getColumn();
 
-
-        if (!cellToOpen.isWithMine()) {
+/*
+        if (!backPanel[xCordsTakenByUser][yCordsTakenByUser].isWithMine()) {
             String temp= String.valueOf(touchingMines(cellToOpen)); //Usado para convertir el int en char
-            cellToOpen.setState( temp.charAt(0));
+            backPanel[xCordsTakenByUser][yCordsTakenByUser].setState( temp.charAt(0));
 
-            if (cellToOpen.getState()!=' '){
-                cellToOpen.setState(' ');
-                if (touchingMines(cellToOpen)==0){
-                    for (int i = 0; i < getTouchingCells(cellToOpen).size() ; i++) {
-                        if (cellToOpen.getState()=='X'){
-                            openCell(getTouchingCells(cellToOpen).get(i));
+            if (backPanel[xCordsTakenByUser][yCordsTakenByUser].getState()!=' '){
+                backPanel[xCordsTakenByUser][yCordsTakenByUser].setState(' ');
+                if (touchingMines(backPanel[xCordsTakenByUser][yCordsTakenByUser])==0){
+                    for (int i = 0; i < getTouchingCells(backPanel[xCordsTakenByUser][yCordsTakenByUser]).size() ; i++) {
+                        if (backPanel[xCordsTakenByUser][yCordsTakenByUser].getState()=='X'){
+                            openCell(getTouchingCells(backPanel[xCordsTakenByUser][yCordsTakenByUser]).get(i));
                         }
+                    }
+                }
+            }*/
+        /*METODO MÍO DEBAJO*/
+        if (backPanel[xCordsTakenByUser][yCordsTakenByUser].isWithMine()) {
+            System.out.println("BIG EXPLOSION*\n\nOh no! \nSoldier down!!");
+            alive = false;
+            showAllMines();
+            System.out.println(showBackPanel());
+        }else{
+            String temp= String.valueOf(touchingMines(cellToOpen)); //Usado para convertir el int en char
+            backPanel[xCordsTakenByUser][yCordsTakenByUser].setState( temp.charAt(0));
+
+            if (touchingMines(backPanel[xCordsTakenByUser][yCordsTakenByUser]) == 0) {
+
+                for (int i = 0; i < getTouchingCells(backPanel[xCordsTakenByUser][yCordsTakenByUser]).size(); i++) {
+
+                    if (backPanel[xCordsTakenByUser][yCordsTakenByUser].getState() == ' ') {
+                        openCell(getTouchingCells(backPanel[xCordsTakenByUser][yCordsTakenByUser]).get(i));
                     }
                 }
             }
             System.out.println("Nice one soldier, you cleared the area, keep it like that");
 
-        }  else {
-            System.out.println("BIG EXPLOSION*\n\nOh no! \nSoldier down!!");
-            alive = false;
-            showAllMines();
-            System.out.println(showBackPanel());
         }
 
+
     }
+
+
+
+
+
+
 
 
 
