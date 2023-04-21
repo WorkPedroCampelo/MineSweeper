@@ -1,17 +1,16 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Panel {
 
 
-    private Scanner teclado;
+    private final Scanner teclado;
     private int minesSetByUser = 0;
-    private Cell backPanel[][];
-    private Random random;
+    private Cell[][] backPanel;
+    private final Random random;
     static boolean alive = true;
 
     public Panel() {
@@ -111,7 +110,7 @@ public class Panel {
         return minesSetByUser;
     }
 
-    public void setMinesOnCells() {
+    private void setMinesOnCells() {
 
 
         for (int countMinesSet = 0; countMinesSet < minesSetByUser; countMinesSet++) {
@@ -250,16 +249,16 @@ public class Panel {
         int counter = 0;
         for (int i = 0; i < backPanel.length; i++) {
             for (int j = 0; j < backPanel[i].length; j++) {
-                if (backPanel[i][j].getState() == '0') {
+                if (backPanel[i][j].getState() == 'X' && backPanel[i][j].getState() == 'P') {
                     counter++;
                 }
             }
         }
-        if (backPanel.length * backPanel[0].length - getMinesSetByUser() == counter) {
+        if (getMinesSetByUser() == counter) {
             winner = true;
         }
 
-        if (winner == true) {
+        if (winner) {
             System.out.println("YOU WON!, CONGRATS");
         }
         return winner;
