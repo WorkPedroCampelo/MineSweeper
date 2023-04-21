@@ -56,7 +56,7 @@ public class Panel {
             for (int j = 0; j < backPanel[i].length; j++) {
 
                 panel = panel + " " + (backPanel[i][j].getState()) + "\t";
-                if (backPanel[i][j].getState()=='M'){
+                if (backPanel[i][j].getState() == 'M') {
                     backPanel[i][j].setWithMine(true);
                 }
             }
@@ -90,12 +90,14 @@ public class Panel {
         }
 
     }
-    public int askXCords(){
+
+    public int askXCords() {
         System.out.print("x cords: ");
         int xCordsTakenByUser = teclado.nextInt();
         return xCordsTakenByUser;
     }
-    public int askYCords(){
+
+    public int askYCords() {
         System.out.print("y cords: ");
         int yCordsTakenByUser = teclado.nextInt();
         return yCordsTakenByUser;
@@ -126,39 +128,21 @@ public class Panel {
     public void openCell(Cell cellToOpen) {
         int xCordsTakenByUser = cellToOpen.getRow();
         int yCordsTakenByUser = cellToOpen.getColumn();
-
-/*
-        if (!backPanel[xCordsTakenByUser][yCordsTakenByUser].isWithMine()) {
-            String temp= String.valueOf(touchingMines(cellToOpen)); //Usado para convertir el int en char
-            backPanel[xCordsTakenByUser][yCordsTakenByUser].setState( temp.charAt(0));
-
-            if (backPanel[xCordsTakenByUser][yCordsTakenByUser].getState()!=' '){
-                backPanel[xCordsTakenByUser][yCordsTakenByUser].setState(' ');
-                if (touchingMines(backPanel[xCordsTakenByUser][yCordsTakenByUser])==0){
-                    for (int i = 0; i < getTouchingCells(backPanel[xCordsTakenByUser][yCordsTakenByUser]).size() ; i++) {
-                        if (backPanel[xCordsTakenByUser][yCordsTakenByUser].getState()=='X'){
-                            openCell(getTouchingCells(backPanel[xCordsTakenByUser][yCordsTakenByUser]).get(i));
-                        }
-                    }
-                }
-            }*/
-        /*METODO MÍO DEBAJO*/
+        
         if (backPanel[xCordsTakenByUser][yCordsTakenByUser].isWithMine()) {
             System.out.println("BIG EXPLOSION*\n\nOh no! \nSoldier down!!");
             alive = false;
             showAllMines();
             System.out.println(showBackPanel());
-        }else{
-            String temp= String.valueOf(touchingMines(backPanel[xCordsTakenByUser][yCordsTakenByUser])); //Usado para convertir el int en char
-            backPanel[xCordsTakenByUser][yCordsTakenByUser].setState( temp.charAt(0));
+        } else if (!"012345678".contains(String.valueOf(backPanel[xCordsTakenByUser][yCordsTakenByUser].getState()))) { //Esto equivale a que ya este destapada
+
+            String temp = String.valueOf(touchingMines(backPanel[xCordsTakenByUser][yCordsTakenByUser])); //Usado para convertir el int en char
+            backPanel[xCordsTakenByUser][yCordsTakenByUser].setState(temp.charAt(0));
 
             if (touchingMines(backPanel[xCordsTakenByUser][yCordsTakenByUser]) == 0) {
 
                 for (int i = 0; i < getTouchingCells(backPanel[xCordsTakenByUser][yCordsTakenByUser]).size(); i++) {
-
-                    if (backPanel[xCordsTakenByUser][yCordsTakenByUser].getState() == '0') {
-                        openCell(getTouchingCells(backPanel[xCordsTakenByUser][yCordsTakenByUser]).get(i));
-                    }
+                    openCell(getTouchingCells(backPanel[xCordsTakenByUser][yCordsTakenByUser]).get(i));
                 }
             }
             System.out.println("Nice one soldier, you cleared the area, keep it like that");
@@ -167,13 +151,6 @@ public class Panel {
 
 
     }
-
-
-
-
-
-
-
 
 
     private ArrayList<Cell> getTouchingCells(Cell mainCell) {
@@ -193,8 +170,6 @@ public class Panel {
     }
 
 
-
-
     public int touchingMines(Cell mainCell) {
         int counterTouchingMines = 0;
         ArrayList<Cell> touchingCells = getTouchingCells(mainCell);
@@ -205,8 +180,6 @@ public class Panel {
         }
         return counterTouchingMines;
     }
-
-
 
 
     public void markCell() {

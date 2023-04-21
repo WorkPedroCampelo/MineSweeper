@@ -15,7 +15,7 @@ public class Cell {
     }
 
     private boolean withMine;
-    private char state;//'X':covered, ' ':clear, 'P':marked, 'M':MineShowed
+    private char state;//'X':covered, '0-8':clear, 'P':marked, 'M':MineShowed
     private int column;
     private int row;
 
