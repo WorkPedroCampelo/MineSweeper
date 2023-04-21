@@ -59,9 +59,6 @@ public class Panel {
                     backPanel[i][j].setWithMine(true);
                 }
 
-               /* if (backPanel[i][j].getState() == 'X')  {
-                    backPanel[i][j].setState(' ');
-                }*/
             }
         }
         panel += "\n\n";
@@ -249,7 +246,7 @@ public class Panel {
         int counter = 0;
         for (int i = 0; i < backPanel.length; i++) {
             for (int j = 0; j < backPanel[i].length; j++) {
-                if (backPanel[i][j].getState() == 'X' && backPanel[i][j].getState() == 'P') {
+                if (backPanel[i][j].getState() == 'X' || backPanel[i][j].getState() == 'P') {
                     counter++;
                 }
             }
@@ -264,12 +261,6 @@ public class Panel {
         return winner;
     }
 
-    /*public void checkCloseCells(){ //TODO
-        if (backPanel) {
-
-        }
-    }
-*/
 
 
 }

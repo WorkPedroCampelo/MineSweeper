@@ -3,9 +3,7 @@ package org.example;
 import java.util.Scanner;
 
 public class Game {
-    /*
-        TODO add a multiplier that is connected to difficulty so u can get different ways of play without violating DRY
-     */
+
     String difficulty;
     static Scanner teclado = new Scanner(System.in);
 
